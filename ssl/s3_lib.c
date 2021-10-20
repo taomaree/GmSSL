@@ -4222,7 +4222,7 @@ long ssl_get_algorithm2(SSL *s)
     } else{
     // in the end of finish msg of gmssl handshake, to get the correct hash algo
         printf("ssl_get_algorithm2=%0x08x\n", ssl_get_algorithm2);
-        if (alg2 == 0x909){
+        if (SSL_IS_GMTLS(s) && alg2 == (SSL_HANDSHAKE_MAC_DEFAULT | TLS1_PRF)){
             return SSL_HANDSHAKE_MAC_SM3 | TLS1_PRF_SM3;
         }
     }
